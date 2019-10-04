@@ -18,7 +18,8 @@ const schema = new mongoose.Schema(
     __v: {
       type: String,
       select: false
-    }
+    },
+    students: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }]
   },
   {
     timestamps: true,

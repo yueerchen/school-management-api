@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
+const Joi = require("@hapi/joi");
 
 const schema = new mongoose.Schema({
   firstName: {
     type: String,
     required: true,
     trim: true,
-    minLength: 2
+    minlength: 2
   },
   lastName: {
     type: String,
@@ -13,8 +14,13 @@ const schema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: true
-  }
+    required: true,
+    validate: {
+      validator: email => !Joi.validate(email, Joi.string().email()).error,
+      msg: "Invalid email format"
+    }
+  },
+  courses: [{ type: String, ref: "Course" }]
 });
 
 const model = mongoose.model("Student", schema);
