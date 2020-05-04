@@ -9,7 +9,7 @@ async function loginUser(req, res) {
     return res.status(401).json("Invalid username or password");
   }
 
-  if (existingUser.password !== password) {
+  if (!existingUser.validatePassword(password)) {
     return res.status(401).json("Invalid username or password");
   }
   const token = generateToken(existingUser._id);

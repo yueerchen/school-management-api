@@ -25,6 +25,6 @@ const schema = new mongoose.Schema({
   courses: [{ type: String, ref: "Course" }]
 });
 
-const model = mongoose.model("Student", schema);
+const model = mongoose.model("Teacher", schema);
 
 module.exports = model;

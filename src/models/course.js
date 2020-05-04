@@ -19,7 +19,8 @@ const schema = new mongoose.Schema(
       type: String,
       select: false
     },
-    students: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }]
+    students: [{ type: mongoose.Schema.Types.ObjectId, ref: "Student" }],
+    teachers: [{ type: mongoose.Schema.Types.ObjectId, ref: "Teacher" }]
   },
   {
     timestamps: true,
@@ -30,6 +31,7 @@ const schema = new mongoose.Schema(
   }
 );
 
+// same as alias
 // schema.virtual("code").get(function() {
 //   return this._id;
 // });
