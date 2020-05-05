@@ -10,13 +10,14 @@ const {
   addCourse,
   deleteCourse
 } = require("../controllers/teacher");
+const validateId = require("../middleware/validateId");
 
 router.get("/", getAllTeachers);
-router.get("/:id", getTeacher);
+router.get("/:id", validateId, getTeacher);
 router.post("/", addTeacher);
-router.post("/:id/course/:code", addCourse);
-router.put("/:id", updateTeacher);
-router.delete("/:id", deleteTeacher);
-router.delete("/:id/course/:code", deleteCourse);
+router.post("/:id/course/:code", validateId, addCourse);
+router.put("/:id", validateId, updateTeacher);
+router.delete("/:id", validateId, deleteTeacher);
+router.delete("/:id/course/:code", validateId, deleteCourse);
 
 module.exports = router;

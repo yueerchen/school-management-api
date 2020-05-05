@@ -1,8 +1,10 @@
 const jwt = require("jsonwebtoken");
 
 // role: admin, user
-function generateToken(id) {
-  const token = jwt.sign({ id }, process.env.JWT_KEY, { expiresIn: "1h" });
+function generateToken(id, role) {
+  const token = jwt.sign({ id, role }, process.env.JWT_KEY, {
+    expiresIn: "1h"
+  });
   return token;
 }
 
