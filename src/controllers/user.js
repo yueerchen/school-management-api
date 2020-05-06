@@ -22,7 +22,7 @@ async function addUser(req, res) {
   });
   await user.hashPassword();
   await user.save();
-  const token = generateToken(user._id, "admin");
+  const token = generateToken(user._id);
   return res.json({ email, username, token });
 }
 

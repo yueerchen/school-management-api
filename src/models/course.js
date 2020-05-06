@@ -36,6 +36,21 @@ const schema = new mongoose.Schema(
 //   return this._id;
 // });
 
+schema.statics.searchQuery = async function(pagination, sort, search) {
+  const { page, pageSize } = pagination;
+  return this.find({ _id: { $regex: search, $options: "i" } })
+    .sort(sort)
+    .skip((page - 1) * pageSize)
+    .limit(pageSize);
+};
+
+schema.statics.searchQueryCount = async function(search) {
+  const count = await this.find({
+    _id: { $regex: search, $options: "i" }
+  }).countDocuments();
+  return count;
+};
+
 const model = mongoose.model("Course", schema);
 
 module.exports = model;
